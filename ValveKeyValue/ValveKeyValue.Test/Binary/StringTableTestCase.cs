@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 
 namespace ValveKeyValue.Test
@@ -52,17 +53,17 @@ namespace ValveKeyValue.Test
                     new KVSerializerOptions { StringTable = new(TestStringTable) });
         }
 
-        static string[] TestStringTable => [
+        static string[] TestStringTable => new string[] {
             "flt",
             "i64",
             "int",
             "key",
             "lng",
             "TestObject"
-        ];
+        };
 
-        static ReadOnlySpan<byte> TestData =>
-        [
+        static ReadOnlySpan<byte> TestData => new ReadOnlySpan<byte>(new byte[]
+        {
             0x00, // object: TestObject
                 0x05, 0x00, 0x00, 0x00, // stringTable[5] = "TestObject",
                 0x01, // string: key = value
@@ -82,6 +83,6 @@ namespace ValveKeyValue.Test
                     0x08, 0x07, 0x06, 0x05, 0x04, 0x03, 0x02, 0x01,
                 0x08, // end object
             0x08, // end document
-        ];
+        });
     }
 }

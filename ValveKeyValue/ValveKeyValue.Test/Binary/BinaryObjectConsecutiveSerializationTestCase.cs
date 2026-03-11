@@ -5,15 +5,15 @@ namespace ValveKeyValue.Test
         [Test]
         public void SerializesToBinaryStructure()
         {
-            var first = new KVObject("FirstObject",
-            [
+            var first = new KVObject("FirstObject", new KVObject[]
+            {
                 new KVObject("firstkey", "firstvalue")
-            ]);
+            });
 
-            var second = new KVObject("SecondObject",
-            [
+            var second = new KVObject("SecondObject", new KVObject[]
+            {
                 new KVObject("secondkey", "secondvalue")
-            ]);
+            });
 
             var expectedData = new byte[]
             {

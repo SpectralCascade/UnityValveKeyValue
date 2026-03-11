@@ -68,21 +68,21 @@ namespace ValveKeyValue.Test
             string[] conditions;
             if (condition == null)
             {
-                conditions = [];
+                conditions = new string[0];
             }
             else
             {
-                conditions = [condition];
+                conditions = new string[] { condition };
             }
 
             var data = ParseResource("Text.conditional.vdf", conditions);
             Assert.That((string)data["operating system"], Is.EqualTo("something else"));
         }
 
-        [TestCase([new string[] { "X360" }], ExpectedResult = "small", TestName = "ReadsValueFromComplexBracketedConditional([\"X360\"]) => \"small\"")]
-        [TestCase([new[] { "X360", "GERMAN" }], ExpectedResult = "medium", TestName = "ReadsValueFromComplexBracketedConditional([\"X360\", \"GERMAN\"]) => \"medium\"")]
-        [TestCase([new[] { "X360", "FRENCH" }], ExpectedResult = "medium", TestName = "ReadsValueFromComplexBracketedConditional([\"X360\", \"FRENCH\"]) => \"medium\"")]
-        [TestCase([new[] { "X360", "POLISH" }], ExpectedResult = "large", TestName = "ReadsValueFromComplexBracketedConditional([\"X360\", \"POLISH\"]) => \"large\"")]
+        [TestCase(new[] { new string[] { "X360" } }, ExpectedResult = "small", TestName = "ReadsValueFromComplexBracketedConditional([\"X360\"]) => \"small\"")]
+        [TestCase(new[] { new[] { "X360", "GERMAN" } }, ExpectedResult = "medium", TestName = "ReadsValueFromComplexBracketedConditional([\"X360\", \"GERMAN\"]) => \"medium\"")]
+        [TestCase(new[] { new[] { "X360", "FRENCH" } }, ExpectedResult = "medium", TestName = "ReadsValueFromComplexBracketedConditional([\"X360\", \"FRENCH\"]) => \"medium\"")]
+        [TestCase(new[] { new[] { "X360", "POLISH" } }, ExpectedResult = "large", TestName = "ReadsValueFromComplexBracketedConditional([\"X360\", \"POLISH\"]) => \"large\"")]
         public string ReadsValueFromComplexBracketedConditional(string[] conditions)
         {
             var data = ParseResource("Text.conditional.vdf", conditions);
@@ -112,7 +112,7 @@ namespace ValveKeyValue.Test
             var children = data.Children.ToArray();
             Assert.That(children, Has.Length.EqualTo(0));
 
-            data = ParseResource("Text.conditional_before_object_value.vdf", ["WIN32"]);
+            data = ParseResource("Text.conditional_before_object_value.vdf", new string[] { "WIN32" });
             Assert.That(data, Is.Not.Null);
             Assert.That(data.Value.ValueType, Is.EqualTo(KVValueType.Collection));
 
@@ -132,7 +132,7 @@ namespace ValveKeyValue.Test
             var children = data.Children.ToArray();
             Assert.That(children, Has.Length.EqualTo(0));
 
-            data = ParseResource("Text.conditional_between_key_and_value.vdf", ["WIN32"]);
+            data = ParseResource("Text.conditional_between_key_and_value.vdf", new string[] { "WIN32" });
             Assert.That(data, Is.Not.Null);
             Assert.That(data.Value.ValueType, Is.EqualTo(KVValueType.Collection));
 
@@ -149,7 +149,7 @@ namespace ValveKeyValue.Test
         }
 
         static KVObject ParseResource(string name)
-            => ParseResource(name, []);
+            => ParseResource(name, new string[0]);
 
         static KVObject ParseResource(string name, string[] conditions)
         {

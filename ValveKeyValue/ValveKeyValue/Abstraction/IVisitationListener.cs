@@ -1,3 +1,5 @@
+using System;
+
 namespace ValveKeyValue.Abstraction
 {
     interface IVisitationListener : IDisposable

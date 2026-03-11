@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 
 namespace ValveKeyValue.Test
@@ -281,7 +282,7 @@ namespace ValveKeyValue.Test
         {
             var kv = new KVObject(
                 "aaa",
-                [new KVObject("bbb", "ccc")]);
+                new[] { new KVObject("bbb", "ccc") });
 
             Assert.That(
                 () => Convert.ChangeType(kv.Value, type),
@@ -293,7 +294,7 @@ namespace ValveKeyValue.Test
         {
             var kv = new KVObject(
                 "aaa",
-                [new KVObject("bbb", "ccc")]);
+                new KVObject[] { new KVObject("bbb", "ccc") });
 
             return Convert.ChangeType(kv.Value, type);
         }

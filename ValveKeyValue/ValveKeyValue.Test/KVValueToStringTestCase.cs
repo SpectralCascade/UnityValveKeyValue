@@ -13,8 +13,8 @@ namespace ValveKeyValue.Test
             {
                 yield return new TestCaseData(new KVObject("a", "blah").Value).Returns("blah");
                 yield return new TestCaseData(new KVObject("a", "yay").Value).Returns("yay");
-                yield return new TestCaseData(new KVObject("a", []).Value).Returns("[Collection]").SetName("{m} - Empty Collection");
-                yield return new TestCaseData(new KVObject("a", [new KVObject("boo", "aah")]).Value).Returns("[Collection]").SetName("{m} - Collection With Value");
+                yield return new TestCaseData(new KVObject("a", new KVObject[0]).Value).Returns("[Collection]").SetName("{m} - Empty Collection");
+                yield return new TestCaseData(new KVObject("a", new KVObject[] { new KVObject("boo", "aah") }).Value).Returns("[Collection]").SetName("{m} - Collection With Value");
             }
         }
     }

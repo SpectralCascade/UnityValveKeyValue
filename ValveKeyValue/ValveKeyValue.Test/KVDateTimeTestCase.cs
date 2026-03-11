@@ -1,3 +1,6 @@
+using System;
+using System.IO;
+
 namespace ValveKeyValue.Test
 {
     class KVDateTimeTestCase
@@ -14,10 +17,9 @@ namespace ValveKeyValue.Test
         [Test]
         public void DeserializeDateTimeNotSupported()
         {
-            var obj = new KVObject("test",
-            [
+            var obj = new KVObject("test", new KVObject[] {
                 new KVObject("Value", "some value that could be a date")
-            ]);
+            });
             using var ms = new MemoryStream();
             var serializer = KVSerializer.Create(KVSerializationFormat.KeyValues1Text);
 

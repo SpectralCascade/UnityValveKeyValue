@@ -1,3 +1,5 @@
+using System.IO;
+
 namespace ValveKeyValue.Test
 {
     class StringTableFromScratchTestCase
@@ -5,13 +7,13 @@ namespace ValveKeyValue.Test
         [Test]
         public void PopulatesStringTableDuringSerialization()
         {
-            var kv = new KVObject("root",
-            [
+            var kv = new KVObject("root", new KVObject[]
+            {
                 new KVObject("key", "value"),
-                new KVObject("child", [
+                new KVObject("child", new KVObject[] {
                     new KVObject("key", 123),
-                ]),
-            ]);
+                }),
+            });
 
             var stringTable = new StringTable();
 

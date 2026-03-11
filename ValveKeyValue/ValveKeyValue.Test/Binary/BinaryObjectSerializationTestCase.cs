@@ -1,3 +1,5 @@
+using System;
+
 namespace ValveKeyValue.Test
 {
     class BinaryObjectSerializationTestCase
@@ -5,8 +7,8 @@ namespace ValveKeyValue.Test
         [Test]
         public void SerializesToBinaryStructure()
         {
-            var kvo = new KVObject("TestObject",
-            [
+            var kvo = new KVObject("TestObject", new KVObject[]
+            {
                 new KVObject("key", "value"),
                 new KVObject("key_utf8", "邪恶的战"),
                 new KVObject("int", 0x10203040),
@@ -14,7 +16,7 @@ namespace ValveKeyValue.Test
                 new KVObject("ptr", new IntPtr(0x12345678)),
                 new KVObject("lng", 0x8877665544332211u),
                 new KVObject("i64", 0x0102030405060708)
-            ]);
+            });
 
             var expectedData = new byte[]
             {

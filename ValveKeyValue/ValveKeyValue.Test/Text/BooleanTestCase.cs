@@ -1,3 +1,4 @@
+using System.IO;
 using System.Text;
 
 namespace ValveKeyValue.Test
@@ -35,11 +36,10 @@ namespace ValveKeyValue.Test
         [Test]
         public void DynamicSerialization()
         {
-            var data = new KVObject("object",
-            [
+            var data = new KVObject("object", new KVObject[] {
                 new KVObject("test1_false", false),
                 new KVObject("test2_true", true),
-            ]);
+            });
 
             var expected = TestDataHelper.ReadTextResource("Text.boolean_serialization.vdf");
 

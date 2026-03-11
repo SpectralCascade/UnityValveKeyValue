@@ -24,11 +24,11 @@ namespace ValveKeyValue.Test
         {
             data = new KVObject(
                 "test data",
-                [
+                new KVObject[] {
                     new KVObject("foo", "bar"),
                     new KVObject("bar", "baz"),
                     new KVObject("baz", "-"),
-                ]);
+                });
         }
     }
 }

@@ -1,4 +1,6 @@
+using System;
 using System.Diagnostics.CodeAnalysis;
+using System.IO;
 using ValveKeyValue.Abstraction;
 using ValveKeyValue.Deserialization;
 using ValveKeyValue.Deserialization.KeyValues1;
